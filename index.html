@@ -1,41 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge - DOM</title>
-  </head>
-  <body>
-    <div id="app">
-      <!-- TODO: Buatlah sebuah header dengan id todo-title -->
-      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
 
-      <!-- Section: input -->
-      <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
-      <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Challenge - DOM</title>
+</head>
+<style>
+  body {
+    background-color: violet;
+    display: flex;
+    justify-content: center;
+  }
 
-      <!-- Section output -->
-      <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
-    </div>
+  #app {
+    width: 360px;
+    min-height: 360px;
+    margin-top: 144px;
+    background: white;
+    border-radius: 5px;
+    text-align: center;
+  }
 
-    <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
-    <script>
-      // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+  #todo-title {
+    background-color: aqua;
+    align-items: center;
+    margin-bottom: 0px;
+  }
 
-      // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-      // Fungsi yang digunakan untuk menambahkan tulisan
-      // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+  #todo-subtitle {
+    margin: 0px;
+    margin-bottom: 15px;
+  }
+</style>
 
-      // TODO: register event onclick / addEventListener untuk button
-      // akan menjalankan fungsi fnClickHandler
-      
-      // TODO: register event onkeypress / addEventListener untuk input
-      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
-    </script>
-  </body>
+<body>
+  <div id="app">
+    <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+    <h2 id="todo-title">To-Do-List</h2>
+    <br>
+    <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+    <h5 id="todo-subtitle">~ Today I need to ~</h5>
+
+    <!-- Section: input -->
+    <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+    <input type="text" id="todo-input">
+    <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+    <button id="todo-submit">submit</button>
+
+    <!-- Section output -->
+    <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+    <ul id="todo-output">
+
+    </ul>
+  </div>
+
+  <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
+  <script>
+    // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
+    let button = document.querySelector('#todo-submit');
+    let input = document.querySelector('#todo-input');
+    let output = document.querySelector('#todo-output');
+
+    // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
+    // Fungsi yang digunakan untuk menambahkan tulisan
+    // Jangan ubah cara deklarasi fungsinya, cukup isi saja
+
+
+    function fnClickHandler(toDoItem) {
+      let li = document.createElement('li');
+      li.textContent = toDoItem;
+      output.appendChild(li);
+      // li.className = 'todo-item';
+      input.value = "";
+      return li;
+    }
+
+    // TODO: register event onclick / addEventListener untuk button
+    // akan menjalankan fungsi fnClickHandler
+    button.addEventListener('click', () => {
+      const isi = input.value;
+      fnClickHandler(isi);
+    });
+
+    // TODO: register event onkeypress / addEventListener untuk input
+    // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+    input.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const isi = input.value;
+        fnClickHandler(isi);
+      }
+    });
+  </script>
+</body>
+
 </html>
